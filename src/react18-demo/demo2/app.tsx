@@ -26,26 +26,26 @@ export default function App() {
           className={tab === 0 ? 'selected' : null}
           onClick={() => handleClick(0)}
         >
-          Uno
+          demo
         </li>
         <li
           className={tab === 1 ? 'selected' : null}
           onClick={() => handleClick(1)}
         >
-          Dos
+          use-transition-demo
         </li>
         <li
           className={tab === 2 ? 'selected' : null}
           onClick={() => handleClick(2)}
         >
-          Tres
+          use-deferred-value-demo
         </li>
       </ul>
       <div className={`tab ${isPending ? 'pending' : null}`}>
         <Suspense fallback={<Loader />}>
-          {tab === 0 && <Content page="Uno" resource={resource} />}
-          {tab === 1 && <Content page="Dos" resource={resource} />}
-          {tab === 2 && <Content page="Tres" resource={resource} />}
+          {tab === 0 && <Content page="demo" resource={resource} />}
+          {tab === 1 && <Content page="use-transition-demo" resource={resource} />}
+          {tab === 2 && <Content page="use-deferred-value-demo" resource={resource} />}
         </Suspense>
       </div>
     </>

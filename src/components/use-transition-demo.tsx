@@ -7,7 +7,7 @@ const getNextUserId = (id) => {
 const UseTransitionDemo = () => {
   const [resource,setResource] = React.useState(initResource);
   const [isPending,startTransition] = React.useTransition({
-    timeout:1000
+    timeout:2000
   });
   return <>
   <button disabled={isPending} onClick={()=>startTransition(

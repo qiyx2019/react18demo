@@ -7,7 +7,7 @@ import ErrorBoundary from '@/components/error-boundary'
 import UseRefDemo from "@/components/use-ref-demo";
 import UseRedcerDemo from "@/components/use-reducer-demo";
 import SuspenseDemo from "@/components/suspense-demo";
-import UseTransitionDemo from "@/components/use-transition";
+import UseTransitionDemo from "@/components/use-transition-demo";
 import USeDeferredValueDemo from "@/components/use-deferred-value-demo";
 import AppDemo from "@/react18-demo/demo2/app"
 import AppDemo1 from "@/react18-demo/demo1/app"
@@ -22,9 +22,9 @@ const Home = (props: HomeProps<any>) => {
       {/* <UseRedcerDemo /> */}
      {/* <SuspenseDemo /> */}
      {/* <UseTransitionDemo /> */}
-     <USeDeferredValueDemo />
+     {/* <USeDeferredValueDemo /> */}
      <AppDemo />
-     <AppDemo1 />
+     {/* <AppDemo1 /> */}
    </ErrorBoundary>
   );
 }
