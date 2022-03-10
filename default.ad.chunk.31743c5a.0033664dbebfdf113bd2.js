@@ -1,12 +1,89 @@
 "use strict";
-(self["webpackChunkrx"] = self["webpackChunkrx"] || []).push([["default.ad.chunk.84781932"],{
+(self["webpackChunkrx"] = self["webpackChunkrx"] || []).push([["default.ad.chunk.31743c5a"],{
+
+/***/ 889:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(152);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(294);
+/* harmony import */ var _api_fakeApi1__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(884);
+
+
+
+var initResource = (0,_api_fakeApi1__WEBPACK_IMPORTED_MODULE_1__/* .fetchProfileData */ .bN)(0);
+
+var getNextUserId = function getNextUserId(id) {
+  return id === 3 ? 0 : id + 1;
+};
+
+var UseTransitionDemo = function UseTransitionDemo() {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(initResource),
+      _React$useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(_React$useState, 2),
+      resource = _React$useState2[0],
+      setResource = _React$useState2[1];
+
+  var _React$useTransition = react__WEBPACK_IMPORTED_MODULE_0__.useTransition({
+    timeout: 2000
+  }),
+      _React$useTransition2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(_React$useTransition, 2),
+      isPending = _React$useTransition2[0],
+      startTransition = _React$useTransition2[1];
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    disabled: isPending,
+    onClick: function onClick() {
+      return startTransition(function () {
+        var nextUserId = getNextUserId(resource.userId);
+        setResource((0,_api_fakeApi1__WEBPACK_IMPORTED_MODULE_1__/* .fetchProfileData */ .bN)(nextUserId));
+      });
+    }
+  }, "Next"), isPending && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "update page..."), !isPending && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ProfilePage, {
+    resource: resource
+  }));
+};
+
+function ProfilePage(_ref) {
+  var resource = _ref.resource;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Loading profile...")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ProfileDetails, {
+    resource: resource
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
+    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Loading posts...")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ProfileTimeline, {
+    resource: resource
+  })));
+}
+
+function ProfileDetails(_ref2) {
+  var resource = _ref2.resource;
+  var user = resource.user.read();
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, user.name);
+}
+
+function ProfileTimeline(_ref3) {
+  var resource = _ref3.resource;
+  var posts = resource.posts.read();
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, posts.map(function (post) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+      key: post.id
+    }, post.text);
+  }));
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UseTransitionDemo);
+
+/***/ }),
 
 /***/ 172:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(745);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(294);
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(758);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(381);
 
 
 
@@ -226,12 +303,21 @@ function GlobalLoader(_ref) {
 }
 
 /* harmony default export */ const global_loader = (GlobalLoader);
+// EXTERNAL MODULE: ./src/react18-demo/demo1/app.tsx + 2 modules
+var app = __webpack_require__(483);
+// EXTERNAL MODULE: ./src/components/use-transition-demo.tsx
+var use_transition_demo = __webpack_require__(889);
+// EXTERNAL MODULE: ./src/components/use-deferred-value-demo.tsx
+var use_deferred_value_demo = __webpack_require__(903);
 ;// CONCATENATED MODULE: ./src/react18-demo/demo2/content.tsx
 
+
+
+
 var CONTENT = {
-  Uno: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  Dos: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
-  Tres: "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."
+  'demo': /*#__PURE__*/react.createElement(app/* default */.Z, null),
+  'use-transition-demo': /*#__PURE__*/react.createElement(use_transition_demo/* default */.Z, null),
+  'use-deferred-value-demo': /*#__PURE__*/react.createElement(use_deferred_value_demo/* default */.Z, null)
 };
 
 function Content(_ref) {
@@ -240,7 +326,7 @@ function Content(_ref) {
   var time = resource.delay.read();
   return time && /*#__PURE__*/react.createElement("div", {
     className: "tab-content"
-  }, "This content is for page \"", page, "\" after ", time.toFixed(), "ms.", /*#__PURE__*/react.createElement("p", null, CONTENT[page]));
+  }, "This content is for page \"", page, "\" after ", time.toFixed(), "ms.", /*#__PURE__*/react.createElement("div", null, CONTENT[page]));
 }
 
 /* harmony default export */ const content = (Content);
@@ -306,7 +392,7 @@ var insertStyleElement_default = /*#__PURE__*/__webpack_require__.n(insertStyleE
 var styleTagTransform = __webpack_require__(589);
 var styleTagTransform_default = /*#__PURE__*/__webpack_require__.n(styleTagTransform);
 // EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js!./src/react18-demo/demo2/app.css
-var app = __webpack_require__(675);
+var demo2_app = __webpack_require__(675);
 ;// CONCATENATED MODULE: ./src/react18-demo/demo2/app.css
 
       
@@ -329,12 +415,12 @@ options.setAttributes = (setAttributesWithoutAttributes_default());
 options.domAPI = (styleDomAPI_default());
 options.insertStyleElement = (insertStyleElement_default());
 
-var update = injectStylesIntoStyleTag_default()(app/* default */.Z, options);
+var update = injectStylesIntoStyleTag_default()(demo2_app/* default */.Z, options);
 
 
 
 
-       /* harmony default export */ const demo2_app = (app/* default */.Z && app/* default.locals */.Z.locals ? app/* default.locals */.Z.locals : undefined);
+       /* harmony default export */ const react18_demo_demo2_app = (demo2_app/* default */.Z && demo2_app/* default.locals */.Z.locals ? demo2_app/* default.locals */.Z.locals : undefined);
 
 ;// CONCATENATED MODULE: ./src/react18-demo/demo2/app.tsx
 
@@ -377,28 +463,28 @@ function App() {
     onClick: function onClick() {
       return handleClick(0);
     }
-  }, "Uno"), /*#__PURE__*/react.createElement("li", {
+  }, "demo"), /*#__PURE__*/react.createElement("li", {
     className: tab === 1 ? 'selected' : null,
     onClick: function onClick() {
       return handleClick(1);
     }
-  }, "Dos"), /*#__PURE__*/react.createElement("li", {
+  }, "use-transition-demo"), /*#__PURE__*/react.createElement("li", {
     className: tab === 2 ? 'selected' : null,
     onClick: function onClick() {
       return handleClick(2);
     }
-  }, "Tres")), /*#__PURE__*/react.createElement("div", {
+  }, "use-deferred-value-demo")), /*#__PURE__*/react.createElement("div", {
     className: "tab ".concat(isPending ? 'pending' : null)
   }, /*#__PURE__*/react.createElement(react.Suspense, {
     fallback: /*#__PURE__*/react.createElement(Loader, null)
   }, tab === 0 && /*#__PURE__*/react.createElement(content, {
-    page: "Uno",
+    page: "demo",
     resource: resource
   }), tab === 1 && /*#__PURE__*/react.createElement(content, {
-    page: "Dos",
+    page: "use-transition-demo",
     resource: resource
   }), tab === 2 && /*#__PURE__*/react.createElement(content, {
-    page: "Tres",
+    page: "use-deferred-value-demo",
     resource: resource
   }))));
 }

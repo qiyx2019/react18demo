@@ -1,7 +1,155 @@
 "use strict";
 (self["webpackChunkrx"] = self["webpackChunkrx"] || []).push([["default.ad.chunk.d91a9049"],{
 
-/***/ 758:
+/***/ 884:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "bN": () => (/* binding */ fetchProfileData)
+/* harmony export */ });
+/* unused harmony exports fetchUser, fetchPosts */
+function fetchProfileData(userId) {
+  var userPromise = fetchUser(userId);
+  var postsPromise = fetchPosts(userId);
+  return {
+    userId: userId,
+    user: wrapPromise(userPromise),
+    posts: wrapPromise(postsPromise)
+  };
+} // Suspense integrations like Relay implement
+// a contract like this to integrate with React.
+// Real implementations can be significantly more complex.
+// Don't copy-paste this into your project!
+
+function wrapPromise(promise) {
+  var status = "pending";
+  var result;
+  var suspender = promise.then(function (r) {
+    status = "success";
+    result = r;
+  }, function (e) {
+    status = "error";
+    result = e;
+  });
+  return {
+    read: function read() {
+      if (status === "pending") {
+        throw suspender;
+      } else if (status === "error") {
+        throw result;
+      } else if (status === "success") {
+        return result;
+      }
+    }
+  };
+}
+
+function fetchUser(userId) {
+  console.log("fetch user " + userId + "...");
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      console.log("fetched user " + userId);
+
+      switch (userId) {
+        case 0:
+          resolve({
+            name: "Ringo Starr"
+          });
+          break;
+
+        case 1:
+          resolve({
+            name: "George Harrison"
+          });
+          break;
+
+        case 2:
+          resolve({
+            name: "John Lennon"
+          });
+          break;
+
+        case 3:
+          resolve({
+            name: "Paul McCartney"
+          });
+          break;
+
+        default:
+          throw Error("Unknown user.");
+      }
+    }, 2000 * Math.random());
+  });
+}
+function fetchPosts(userId) {
+  console.log("fetch posts for " + userId + "...");
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      console.log("fetched posts for " + userId);
+
+      switch (userId) {
+        case 0:
+          resolve([{
+            id: 0,
+            text: "I get by with a little help from my friends"
+          }, {
+            id: 1,
+            text: "I'd like to be under the sea in an octupus's garden"
+          }, {
+            id: 2,
+            text: "You got that sand all over your feet"
+          }]);
+          break;
+
+        case 1:
+          resolve([{
+            id: 0,
+            text: "Turn off your mind, relax, and float downstream"
+          }, {
+            id: 1,
+            text: "All things must pass"
+          }, {
+            id: 2,
+            text: "I look at the world and I notice it's turning"
+          }]);
+          break;
+
+        case 2:
+          resolve([{
+            id: 0,
+            text: "Living is easy with eyes closed"
+          }, {
+            id: 1,
+            text: "Nothing's gonna change my world"
+          }, {
+            id: 2,
+            text: "I am the walrus"
+          }]);
+          break;
+
+        case 3:
+          resolve([{
+            id: 0,
+            text: "Woke up, fell out of bed"
+          }, {
+            id: 1,
+            text: "Here, there, and everywhere"
+          }, {
+            id: 2,
+            text: "Two of us sending postcards, writing letters"
+          }]);
+          break;
+
+        default:
+          throw Error("Unknown user.");
+      }
+    }, 2000 * Math.random());
+  });
+}
+
+/***/ }),
+
+/***/ 381:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -387,7 +535,7 @@ var UseReducerDemo = function UseReducerDemo(props) {
 UseReducerDemo.displayName = 'UseReducerDemo';
 /* harmony default export */ const use_reducer_demo = ((/* unused pure expression or super */ null && (UseReducerDemo)));
 ;// CONCATENATED MODULE: ./src/api/fakeApi.ts
-function fakeApi_fetchProfileData() {
+function fetchProfileData() {
   var userPromise = fetchUser();
   var postsPromise = fetchPosts();
   return {
@@ -455,7 +603,7 @@ function fetchPosts() {
 ;// CONCATENATED MODULE: ./src/components/suspense-demo.tsx
 
 
-var resource = fakeApi_fetchProfileData();
+var resource = fetchProfileData();
 
 var SuspenseDemo = function SuspenseDemo() {
   return /*#__PURE__*/React.createElement(React.Suspense, {
@@ -480,249 +628,10 @@ var ProfileTimeline = function ProfileTimeline() {
 };
 
 /* harmony default export */ const suspense_demo = ((/* unused pure expression or super */ null && (SuspenseDemo)));
-;// CONCATENATED MODULE: ./src/api/fakeApi1.ts
-function fakeApi1_fetchProfileData(userId) {
-  var userPromise = fakeApi1_fetchUser(userId);
-  var postsPromise = fakeApi1_fetchPosts(userId);
-  return {
-    userId: userId,
-    user: fakeApi1_wrapPromise(userPromise),
-    posts: fakeApi1_wrapPromise(postsPromise)
-  };
-} // Suspense integrations like Relay implement
-// a contract like this to integrate with React.
-// Real implementations can be significantly more complex.
-// Don't copy-paste this into your project!
-
-function fakeApi1_wrapPromise(promise) {
-  var status = "pending";
-  var result;
-  var suspender = promise.then(function (r) {
-    status = "success";
-    result = r;
-  }, function (e) {
-    status = "error";
-    result = e;
-  });
-  return {
-    read: function read() {
-      if (status === "pending") {
-        throw suspender;
-      } else if (status === "error") {
-        throw result;
-      } else if (status === "success") {
-        return result;
-      }
-    }
-  };
-}
-
-function fakeApi1_fetchUser(userId) {
-  console.log("fetch user " + userId + "...");
-  return new Promise(function (resolve) {
-    setTimeout(function () {
-      console.log("fetched user " + userId);
-
-      switch (userId) {
-        case 0:
-          resolve({
-            name: "Ringo Starr"
-          });
-          break;
-
-        case 1:
-          resolve({
-            name: "George Harrison"
-          });
-          break;
-
-        case 2:
-          resolve({
-            name: "John Lennon"
-          });
-          break;
-
-        case 3:
-          resolve({
-            name: "Paul McCartney"
-          });
-          break;
-
-        default:
-          throw Error("Unknown user.");
-      }
-    }, 2000 * Math.random());
-  });
-}
-function fakeApi1_fetchPosts(userId) {
-  console.log("fetch posts for " + userId + "...");
-  return new Promise(function (resolve) {
-    setTimeout(function () {
-      console.log("fetched posts for " + userId);
-
-      switch (userId) {
-        case 0:
-          resolve([{
-            id: 0,
-            text: "I get by with a little help from my friends"
-          }, {
-            id: 1,
-            text: "I'd like to be under the sea in an octupus's garden"
-          }, {
-            id: 2,
-            text: "You got that sand all over your feet"
-          }]);
-          break;
-
-        case 1:
-          resolve([{
-            id: 0,
-            text: "Turn off your mind, relax, and float downstream"
-          }, {
-            id: 1,
-            text: "All things must pass"
-          }, {
-            id: 2,
-            text: "I look at the world and I notice it's turning"
-          }]);
-          break;
-
-        case 2:
-          resolve([{
-            id: 0,
-            text: "Living is easy with eyes closed"
-          }, {
-            id: 1,
-            text: "Nothing's gonna change my world"
-          }, {
-            id: 2,
-            text: "I am the walrus"
-          }]);
-          break;
-
-        case 3:
-          resolve([{
-            id: 0,
-            text: "Woke up, fell out of bed"
-          }, {
-            id: 1,
-            text: "Here, there, and everywhere"
-          }, {
-            id: 2,
-            text: "Two of us sending postcards, writing letters"
-          }]);
-          break;
-
-        default:
-          throw Error("Unknown user.");
-      }
-    }, 2000 * Math.random());
-  });
-}
-;// CONCATENATED MODULE: ./src/components/use-transition.tsx
-
-
-
-var initResource = fakeApi1_fetchProfileData(0);
-
-var getNextUserId = function getNextUserId(id) {
-  return id === 3 ? 0 : id + 1;
-};
-
-var UseTransitionDemo = function UseTransitionDemo() {
-  var _React$useState = React.useState(initResource),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      resource = _React$useState2[0],
-      setResource = _React$useState2[1];
-
-  var _React$useTransition = React.useTransition({
-    timeout: 1000
-  }),
-      _React$useTransition2 = _slicedToArray(_React$useTransition, 2),
-      isPending = _React$useTransition2[0],
-      startTransition = _React$useTransition2[1];
-
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
-    disabled: isPending,
-    onClick: function onClick() {
-      return startTransition(function () {
-        var nextUserId = getNextUserId(resource.userId);
-        setResource(fetchProfileData(nextUserId));
-      });
-    }
-  }, "Next"), isPending && /*#__PURE__*/React.createElement("h1", null, "update page..."), !isPending && /*#__PURE__*/React.createElement(ProfilePage, {
-    resource: resource
-  }));
-};
-
-function ProfilePage(_ref) {
-  var resource = _ref.resource;
-  return /*#__PURE__*/React.createElement(React.Suspense, {
-    fallback: /*#__PURE__*/React.createElement("h1", null, "Loading profile...")
-  }, /*#__PURE__*/React.createElement(use_transition_ProfileDetails, {
-    resource: resource
-  }), /*#__PURE__*/React.createElement(React.Suspense, {
-    fallback: /*#__PURE__*/React.createElement("h1", null, "Loading posts...")
-  }, /*#__PURE__*/React.createElement(use_transition_ProfileTimeline, {
-    resource: resource
-  })));
-}
-
-function use_transition_ProfileDetails(_ref2) {
-  var resource = _ref2.resource;
-  var user = resource.user.read();
-  return /*#__PURE__*/React.createElement("h1", null, user.name);
-}
-
-function use_transition_ProfileTimeline(_ref3) {
-  var resource = _ref3.resource;
-  var posts = resource.posts.read();
-  return /*#__PURE__*/React.createElement("ul", null, posts.map(function (post) {
-    return /*#__PURE__*/React.createElement("li", {
-      key: post.id
-    }, post.text);
-  }));
-}
-
-/* harmony default export */ const use_transition = ((/* unused pure expression or super */ null && (UseTransitionDemo)));
-;// CONCATENATED MODULE: ./src/components/use-deferred-value-demo.tsx
-
-
-
-var getLis = function getLis(key) {
-  var arr = [];
-
-  for (var i = 0; i < 10000; i++) {
-    if (String(i).includes(key)) {
-      arr.push( /*#__PURE__*/react.createElement("li", {
-        key: i
-      }, i));
-    }
-  }
-
-  return arr;
-};
-
-var UseDeferredValueDemo = function UseDeferredValueDemo() {
-  var _React$useState = react.useState(""),
-      _React$useState2 = (0,slicedToArray/* default */.Z)(_React$useState, 2),
-      value = _React$useState2[0],
-      setValue = _React$useState2[1];
-
-  var deferredValue = react.useDeferredValue(value);
-  console.log(value, 'value');
-  console.log(deferredValue, 'deferredValue');
-
-  var handleChange = function handleChange(e) {
-    setValue(e.target.value);
-  };
-
-  return /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("input", {
-    onChange: handleChange
-  })), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("ul", null, deferredValue ? getLis(deferredValue) : null)));
-};
-
-/* harmony default export */ const use_deferred_value_demo = (UseDeferredValueDemo);
+// EXTERNAL MODULE: ./src/components/use-transition-demo.tsx
+var use_transition_demo = __webpack_require__(889);
+// EXTERNAL MODULE: ./src/components/use-deferred-value-demo.tsx
+var use_deferred_value_demo = __webpack_require__(903);
 // EXTERNAL MODULE: ./src/react18-demo/demo2/app.tsx + 4 modules
 var app = __webpack_require__(641);
 // EXTERNAL MODULE: ./src/react18-demo/demo1/app.tsx + 2 modules
@@ -743,11 +652,59 @@ var demo1_app = __webpack_require__(483);
 
 
 var Home = function Home(props) {
-  return /*#__PURE__*/react.createElement(error_boundary, null, /*#__PURE__*/react.createElement(use_deferred_value_demo, null), /*#__PURE__*/react.createElement(app/* default */.Z, null), /*#__PURE__*/react.createElement(demo1_app/* default */.Z, null));
+  return /*#__PURE__*/react.createElement(error_boundary, null, /*#__PURE__*/react.createElement(app/* default */.Z, null));
 };
 
 Home.displayName = 'Home';
 /* harmony default export */ const src_app = (Home);
+
+/***/ }),
+
+/***/ 903:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(152);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(294);
+
+
+
+var getLis = function getLis(key) {
+  var arr = [];
+
+  for (var i = 0; i < 10000; i++) {
+    if (String(i).includes(key)) {
+      arr.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        key: i
+      }, i));
+    }
+  }
+
+  return arr;
+};
+
+var UseDeferredValueDemo = function UseDeferredValueDemo() {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(""),
+      _React$useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)(_React$useState, 2),
+      value = _React$useState2[0],
+      setValue = _React$useState2[1];
+
+  var deferredValue = react__WEBPACK_IMPORTED_MODULE_0__.useDeferredValue(value);
+  console.log(value, 'value');
+  console.log(deferredValue, 'deferredValue');
+
+  var handleChange = function handleChange(e) {
+    setValue(e.target.value);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    onChange: handleChange
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, deferredValue ? getLis(deferredValue) : null)));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UseDeferredValueDemo);
 
 /***/ }),
 
