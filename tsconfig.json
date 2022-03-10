@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+      "outDir": "./dist/",
+      "sourceMap": true,
+      "noImplicitAny": false,
+      "module": "commonjs",
+      "target": "es6",
+      "jsx": "react",
+      "rootDirs": ["src"],
+      "baseUrl": ".",
+      "paths": {
+        // 映射列表
+        "@/*": [
+          "src/*"
+        ],
+      }
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*","global.d.ts"]
+}

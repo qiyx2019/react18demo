@@ -1,0 +1,36 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.app-content {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.expensive-view {
+  margin-top: 20px;
+  position: relative;
+  width: 500px;
+  height: 500px;
+  border: 2px solid white;
+}
+.box {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.box circle {
+  fill: #ff000033;
+  stroke: #ffffff33;
+}
