@@ -22,5 +22,8 @@ module.exports=merge(common,{
   cache:{
     type: 'memory',
     cacheUnaffected: true,
-  }
+  },
+  optimization: {
+    moduleIds: 'named'
+ }
 })

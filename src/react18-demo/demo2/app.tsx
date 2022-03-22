@@ -9,7 +9,9 @@ const initialResource = fetchData()
 export default function App() {
   const [tab, setTab] = useState(0)
   const [resource, setResource] = useState(initialResource)
-  const [isPending, startTransition] = useTransition()
+  const [isPending, startTransition] = useTransition({
+    timeout:2000
+  })
 
   function handleClick(index) {
     startTransition(() => {
@@ -17,7 +19,17 @@ export default function App() {
       setResource(fetchData())
     })
   }
-
+  const Button = ({...props}) => {
+    return <button {...props}></button>
+  }
+  const Clone = ({children,slot,...props}) => {
+    console.log(children,'children')
+    return React.cloneElement(children,{
+      onClick:()=>{alert(213)},
+      style:{width:100,borderColor:'red'},
+      ...props,
+    },slot({...props})) ||null;
+  }
   return (
     <>
       <GlobalLoader isLoading={isPending} />
@@ -47,6 +59,13 @@ export default function App() {
           {tab === 1 && <Content page="use-transition-demo" resource={resource} />}
           {tab === 2 && <Content page="use-deferred-value-demo" resource={resource} />}
         </Suspense>
+        <Clone type="button" slot={
+          ({...props})=> <div onClick={() => {console.log(props,'props')}}>click</div>
+        }>
+        
+        <Button></Button>
+      
+        </Clone>
       </div>
     </>
   )

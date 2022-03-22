@@ -4,19 +4,21 @@ const HWP = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const HelloWorldPlugin = require('./src/webpack/demo1.ts');
 
 const ASSET_PATH = '/';
  
 module.exports = {
   resolve: {
-    extensions: ['.ts', '.tsx','.js','.jsx'],
+    extensions: ['.ts', '.tsx','.js'],
     alias: {
       '@' : path.resolve(__dirname, './src/')
     },
-    modules: [path.resolve(__dirname, 'src'), 'node_modules']
+    // modules: [path.resolve(__dirname, 'src'), 'node_modules']
   },
   entry: ["./src/index.tsx"],
   plugins: [
+    new HelloWorldPlugin({ options: true }),
     new HWP({
       title: "Production",
       template: './public/index.html'
