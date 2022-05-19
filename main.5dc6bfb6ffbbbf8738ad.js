@@ -109,7 +109,7 @@ function _slicedToArray(arr, i) {
   console.log("demo渲染了");
   return /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("div", null, count), /*#__PURE__*/react.createElement("input", {
     onChange: handleChange
-  }), /*#__PURE__*/react.createElement(Child, Props), /*#__PURE__*/react.createElement(Child2, null));
+  }), /*#__PURE__*/react.createElement(Child, Props), /*#__PURE__*/react.createElement(Child2, null), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Child3, null));
 });
 var Child = /*#__PURE__*/(0,react.memo)(function (_ref) {
   var data = _ref.data,
@@ -122,6 +122,28 @@ var Child = /*#__PURE__*/(0,react.memo)(function (_ref) {
 var Child2 = /*#__PURE__*/(0,react.memo)(function () {
   console.log("child2渲染了");
   return /*#__PURE__*/react.createElement(react.Fragment, null, "child2");
+});
+var Child3 = /*#__PURE__*/(0,react.memo)(function () {
+  console.log("Chilid3渲染了");
+
+  var _useTransition = (0,react.useTransition)(),
+      _useTransition2 = _slicedToArray(_useTransition, 2),
+      isPending = _useTransition2[0],
+      startTransition = _useTransition2[1];
+
+  var _useState5 = (0,react.useState)(""),
+      _useState6 = _slicedToArray(_useState5, 2),
+      name = _useState6[0],
+      setName = _useState6[1];
+
+  var handleClick = (0,react.useCallback)(function () {
+    startTransition(function () {
+      setName("child3");
+    });
+  }, [name]);
+  return /*#__PURE__*/react.createElement(react.Fragment, null, name, isPending && /*#__PURE__*/react.createElement("div", null, "Loading"), /*#__PURE__*/react.createElement("button", {
+    onClick: handleClick
+  }, "clickme"));
 });
 ;// CONCATENATED MODULE: ./src/index.tsx
 
