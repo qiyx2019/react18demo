@@ -73,4 +73,4 @@ class RemoveConsolePlugin {
   }
 }
 
-module.exports = RemoveConsoleWebpackPlugin;
+module.exports = RemoveConsolePlugin;

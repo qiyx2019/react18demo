@@ -12,7 +12,7 @@ export default () => {
     setCount((count) => count + 1);
   }, []);
   const Props = {
-    data,
+   
     handleChange1,
   };
   console.log("demo渲染了");
@@ -22,15 +22,22 @@ export default () => {
 
       <input onChange={handleChange} />
       <Child {...Props} />
+      <Child2 />
     </div>
   );
 };
-const Child = memo(({ data, handleChange1 }) => {
+const Child = memo(({ data, handleChange1 }:any) => {
   console.log("child渲染了");
   return (
     <div>
-      child --{data}
+      child --
       <button onClick={handleChange1}>+</button>
     </div>
   );
 });
+const Child2 = memo(()=> {
+    console.log("child2渲染了");
+    return <>
+    child2
+    </>
+})

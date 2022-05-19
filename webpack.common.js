@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const HelloWorldPlugin = require('./src/webpack/demo1.ts');
-
+const RemoveConsoleWebpackPlugin = require('./remove-log-plugin/src/index')
 const ASSET_PATH = '/';
  
 module.exports = {
