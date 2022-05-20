@@ -1,7 +1,7 @@
 "use strict";
 (self["webpackChunkrx"] = self["webpackChunkrx"] || []).push([["main"],{
 
-/***/ 620:
+/***/ 796:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 
@@ -75,7 +75,50 @@ function _nonIterableRest() {
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
+;// CONCATENATED MODULE: ./src/utils/event.ts
+
+
+/**
+ * Suppress the warning when using useLayoutEffect with SSR
+ * https://reactjs.org/link/uselayouteffect-ssr
+ */
+var useBrowserLayoutEffect = typeof window !== "undefined" ? react.useLayoutEffect : function () {};
+/**
+ * Similar to useCallback, with a few subtle differences:
+ * - The returned function is a stable reference, and will always be the same between renders
+ * - No dependency lists required
+ * - Properties or state accessed within the callback will always be "current"
+ */
+
+function useEvent(callback) {
+  // Keep track of the latest callback:
+  var latestRef = (0,react.useRef)(useEvent_shouldNotBeInvokedBeforeMount);
+  useBrowserLayoutEffect(function () {
+    latestRef.current = callback;
+  }, [callback]); // Create a stable callback that always calls the latest callback:
+
+  var stableRef = (0,react.useRef)(null);
+
+  if (!stableRef.current) {
+    stableRef.current = function () {
+      return latestRef.current.apply(this, arguments);
+    };
+  }
+
+  return stableRef.current;
+}
+/**
+ * Render methods should be pure, especially when concurrency is used,
+ * so we will throw this error if the callback is called while rendering.
+ */
+
+function useEvent_shouldNotBeInvokedBeforeMount() {
+  throw new Error("INVALID_USEEVENT_INVOCATION: the callback from useEvent cannot be invoked before the component has mounted.");
+}
+
+/* harmony default export */ const utils_event = (useEvent);
 ;// CONCATENATED MODULE: ./src/demo.tsx
+
 
 
 
@@ -98,11 +141,11 @@ function _slicedToArray(arr, i) {
   var data = (0,react.useMemo)(function () {
     return count;
   }, [count]);
-  var handleChange1 = (0,react.useCallback)(function () {
+  var handleChange1 = utils_event(function () {
     setCount(function (count) {
       return count + 1;
     });
-  }, []);
+  });
   var Props = {
     handleChange1: handleChange1
   };
@@ -140,7 +183,7 @@ var Child3 = /*#__PURE__*/(0,react.memo)(function () {
     startTransition(function () {
       setName("child3");
     });
-  }, [name]);
+  }, [name, startTransition]);
   return /*#__PURE__*/react.createElement(react.Fragment, null, name, isPending && /*#__PURE__*/react.createElement("div", null, "Loading"), /*#__PURE__*/react.createElement("button", {
     onClick: handleClick
   }, "clickme"));
@@ -195,7 +238,7 @@ if (true) {
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ __webpack_require__.O(0, ["react.ad.chunk.da86be5d","react.ad.chunk.e5bca7e4"], () => (__webpack_exec__(620)));
+/******/ __webpack_require__.O(0, ["react.ad.chunk.da86be5d","react.ad.chunk.e5bca7e4"], () => (__webpack_exec__(796)));
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
