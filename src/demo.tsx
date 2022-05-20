@@ -6,6 +6,7 @@ import {
   memo,
   useTransition,
 } from "react";
+import useEvent from '@/utils/event'
 import * as React from "react";
 export default () => {
   const [count, setCount] = useState(null);
@@ -15,9 +16,9 @@ export default () => {
     console.log(e.target.value);
   };
   let data = useMemo(() => count, [count]);
-  const handleChange1 = useCallback(() => {
+  const handleChange1 = useEvent(() => {
     setCount((count) => count + 1);
-  }, []);
+  });
   const Props = {
     handleChange1,
   };
@@ -55,7 +56,7 @@ const Child3 = memo(() => {
     startTransition(() => {
       setName("child3");
     });
-  }, [name]);
+  }, [name,startTransition]);
   return (
     <>
       {name}
