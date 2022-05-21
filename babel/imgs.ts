@@ -49,7 +49,7 @@ module.exports = function() {
           }
         }
       },
-      // 2.替换@wanmi/ui-taro中的oss地址
+      // 2.替换oss地址
       Literal(path) {
         const node = path.node;
         try {
