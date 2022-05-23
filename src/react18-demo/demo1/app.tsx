@@ -7,7 +7,6 @@ import React, {
   useEffect,
 } from 'react'
 import ExpensiveView from '@/react18-demo/demo1/expensive-view'
-
 import './app.css'
 
 function App() {
